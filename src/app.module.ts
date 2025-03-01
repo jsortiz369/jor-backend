@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app/app.controller';
+import { Logger, Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { dataSourceMysql } from './shared/global/typeorm';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [],
+  imports: [TypeOrmModule.forRoot(dataSourceMysql)],
+  providers: [Logger],
 })
 export class AppModule {}
