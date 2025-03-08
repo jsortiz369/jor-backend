@@ -1,18 +1,11 @@
-import { BadRequestException } from '@nestjs/common';
 import { validate } from 'src/shared/global/uui';
+import { InvalidUuidException } from '../exceptions';
 
-export class UuidNotValidException extends BadRequestException {
-  constructor() {
-    super('Uuid not valid');
-  }
-}
-
-export abstract class Uuid {
+export abstract class UuidValueObject {
   readonly _value: string;
 
   constructor(value: string) {
-    if (!validate(value)) throw new UuidNotValidException();
-
+    if (!validate(value)) throw new InvalidUuidException();
     this._value = value;
   }
 }

@@ -1,3 +1,3 @@
-import { Uuid } from 'src/contexts/shared/value-objects/uuid.value-object';
+import { UuidValueObject } from 'src/contexts/shared/value-objects/uuid.value-object';
 
-export class RoleId extends Uuid {}
+export class RoleId extends UuidValueObject {}
