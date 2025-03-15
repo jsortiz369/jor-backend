@@ -1,14 +1,13 @@
-export type QueryFilters = {
-  page: number;
-  limit: number;
-};
+import { FindFilterDto } from '../dto/find-filter.dto';
 
-type MetaQuery = Pick<QueryFilters, 'page'> & {
+export type QueryFindAll = Pick<FindFilterDto, 'page' | 'limit'>;
+
+type MetaQuery = Pick<QueryFindAll, 'page'> & {
   total: number;
   lastPage: number;
 };
 
-export type QueryData<T> = {
+export type DataFindAll<T> = {
   data: T[];
   meta: MetaQuery;
 };

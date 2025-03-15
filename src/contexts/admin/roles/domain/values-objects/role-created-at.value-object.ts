@@ -1,6 +1,7 @@
+import { RoleMysqlEntity } from '../../infrastructure/typeorm/roles.mysql-entity';
+
+type Value = Pick<RoleMysqlEntity, 'createdAt'>['createdAt'];
+
 export class RoleCreatedAt {
-  readonly _value: Date;
-  constructor(value: Date) {
-    this._value = value;
-  }
+  constructor(readonly _value: Value) {}
 }

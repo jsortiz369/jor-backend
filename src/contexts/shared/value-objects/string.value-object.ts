@@ -1,8 +1,8 @@
 import { InvalidValueException } from '../exceptions';
 
-export abstract class StringValueObject {
-  readonly _value?: string;
-  protected constructor(value?: string) {
+export abstract class StringValueObject<T extends string | undefined | null> {
+  readonly _value: T;
+  protected constructor(value: T) {
     this._value = value;
   }
 
@@ -37,10 +37,10 @@ export abstract class StringValueObject {
   }
 
   private minLength(min: number): boolean {
-    return this._value !== undefined && this._value.length < min;
+    return this._value !== undefined && this._value !== null && this._value.length < min;
   }
 
   private maxLength(limit: number): boolean {
-    return this._value !== undefined && this._value?.length > limit;
+    return this._value !== undefined && this._value !== null && this._value?.length > limit;
   }
 }

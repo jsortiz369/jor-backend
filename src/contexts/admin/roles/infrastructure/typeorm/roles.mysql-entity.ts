@@ -1,4 +1,10 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  UpdateDateColumn,
+} from 'typeorm';
 import { BaseEntityTypeorm } from '../../../../../shared/global/typeorm/base-entity.typeorm';
 import { StatusType } from '../../../../shared/interfaces/db.interface';
 
@@ -12,7 +18,7 @@ export class RoleMysqlEntity extends BaseEntityTypeorm {
   @Column('longtext', {
     nullable: true,
   })
-  description: string;
+  description?: string | null;
 
   @Column('enum', {
     enum: StatusType,

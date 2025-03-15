@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsOptional, IsPositive, Max, Min } from 'class-validator';
+import { IsOptional, IsPositive, IsString, Max, Min } from 'class-validator';
 
 export class FindFilterDto {
   @ApiProperty({
@@ -22,4 +22,9 @@ export class FindFilterDto {
   @IsOptional()
   @Type(() => Number)
   limit: number = 10;
+
+  @IsString()
+  @IsOptional()
+  @Type(() => String)
+  search: string = '';
 }

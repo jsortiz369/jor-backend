@@ -1,8 +1,6 @@
-import { StatusType } from 'src/contexts/shared/interfaces/db.interface';
+import { RoleMysqlEntity } from '../../infrastructure/typeorm/roles.mysql-entity';
 
+type Value = Pick<RoleMysqlEntity, 'status'>['status'];
 export class RoleStatus {
-  readonly _value: StatusType;
-  constructor(value: StatusType) {
-    this._value = value;
-  }
+  constructor(readonly _value: Value) {}
 }

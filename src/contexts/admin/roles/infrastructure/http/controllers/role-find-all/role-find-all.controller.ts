@@ -1,14 +1,15 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { FindAllRoleService } from 'src/contexts/admin/roles/application';
-import { FindFilterDto } from 'src/contexts/shared/dto/find-filter.dto';
+import { FindAllRoleUseCase } from 'src/contexts/admin/roles/application';
 import { PATHS_ADMIN } from 'src/shared/global/routes-paths';
+import { FindAllRoleHttpDto } from '../../dto/find-all-role.http-dto';
 
 @Controller(PATHS_ADMIN.ROLES)
 export class RoleFindAllController {
-  constructor(private readonly _findAllRoleService: FindAllRoleService) {}
+  constructor(private readonly _findAllRoleUseCase: FindAllRoleUseCase) {}
 
   @Get()
-  async findAll(@Query() paramDTO: FindFilterDto) {
-    return await this._findAllRoleService.execute(paramDTO);
+  async findAll(@Query() paramDTO: FindAllRoleHttpDto) {
+    console.log(paramDTO);
+    return await this._findAllRoleUseCase.execute(paramDTO);
   }
 }
