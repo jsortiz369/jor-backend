@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { FindAllRoleUseCase } from './find-all-role.use-case';
+import { RoleCreateUseCase } from './role-create.use-case';
 
-describe('FindAllRoleUseCase', () => {
-  let service: FindAllRoleUseCase;
+describe('RoleCreateUseCase', () => {
+  let service: RoleCreateUseCase;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [FindAllRoleUseCase],
+      providers: [RoleCreateUseCase],
     }).compile();
 
-    service = module.get<FindAllRoleUseCase>(FindAllRoleUseCase);
+    service = module.get<RoleCreateUseCase>(RoleCreateUseCase);
   });
 
   it('should be defined', () => {

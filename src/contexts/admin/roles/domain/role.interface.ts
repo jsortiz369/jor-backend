@@ -9,6 +9,8 @@ export type RoleInterface = Pick<
   '_id' | 'name' | 'description' | 'status' | 'createdAt' | 'updatedAt' | 'deletedAt'
 >;
 
+export type RoleDataSave = Omit<RoleInterface, '_id' | 'createdAt' | 'updatedAt' | 'deletedAt'>;
+
 export type RoleValueObject = {
   _id: valueObjects.RoleId;
   name: valueObjects.RoleName;

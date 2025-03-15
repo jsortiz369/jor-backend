@@ -20,6 +20,10 @@ export class Role {
     this.deletedAt = data.deletedAt;
   }
 
+  static create(data: Omit<RoleValueObject, 'createdAt' | 'updatedAt' | 'deletedAt'>) {
+    return new Role({ ...data });
+  }
+
   static fromPrimitives(toPrimitive: RoleInterface): Role {
     const role = {} as RoleValueObject;
     role._id = new valueObjects.RoleId(toPrimitive._id);
