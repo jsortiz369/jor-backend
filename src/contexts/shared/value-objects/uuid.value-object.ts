@@ -1,4 +1,4 @@
-import { uuidGlobal } from 'src/shared/global/uui';
+import { uuidGlobal } from 'src/shared/global/uuid';
 import { InvalidUuidException } from '../exceptions';
 
 export abstract class UuidValueObject {

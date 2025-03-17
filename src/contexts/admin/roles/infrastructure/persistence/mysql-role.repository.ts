@@ -5,7 +5,7 @@ import { RoleRepository } from '../../domain/role.repository';
 import { RoleMysqlEntity } from '../typeorm/roles.mysql-entity';
 import { DataFindAll, Nullable } from 'src/contexts/shared/interfaces/system.interface';
 import { QueryFindAllRole, RoleInterface } from '../../domain/role.interface';
-import { RoleId } from '../../domain/values-objects';
+import { RoleId, RoleName } from '../../domain/values-objects';
 
 export class MysqlRoleRepository implements RoleRepository {
   constructor(
@@ -104,6 +104,24 @@ export class MysqlRoleRepository implements RoleRepository {
   }
 
   /**
+   * @description check if role already exists
+   * @date 17-03-2025 11:23:37
+   * @author Jogan ortiz Muñoz
+   *
+   * @abstract
+   * @param {RoleName} name
+   * @param {?RoleId} [_id]
+   * @returns {Promise<boolean>}
+   */
+  async existRoleByName(name: RoleName, _id?: RoleId): Promise<boolean> {
+    return await this._roleRepository
+      .createQueryBuilder('tr')
+      .where('tr.name = :name', { name: name._value })
+      .andWhere('tr._id != :id', { id: _id?._value ?? '0' })
+      .getExists();
+  }
+
+  /**
    * @description Save a role in the database
    * @date 15-03-2025 12:21:21
    * @author Jogan ortiz Muñoz
@@ -120,7 +138,50 @@ export class MysqlRoleRepository implements RoleRepository {
         _id: role._id._value,
         name: role.name._value,
         description: role.description?._value ?? null,
+        status: role.status._value,
+        updatedAt: 'NULL',
       })
       .execute();
+  }
+
+  /**
+   * @description Updates a role's data by ID
+   * @date 17-03-2025 15:21:04
+   * @author Jogan ortiz Muñoz
+   *
+   * @abstract
+   * @param {Role} role
+   * @returns {Promise<void>}
+   */
+  async update(role: Role): Promise<void> {
+    await this._roleRepository
+      .createQueryBuilder()
+      .update()
+      .set({
+        name: role.name._value,
+        description: role.description?._value ?? null,
+        status: role.status._value,
+      })
+      .where('_id = :id', { id: role._id._value })
+      .execute();
+  }
+
+  /**
+   * @description Deletes a role's data by ID
+   * @date 17-03-2025 16:23:53
+   * @author Jogan ortiz Muñoz
+   *
+   * @abstract
+   * @param {RoleId} _id
+   * @returns {Promise<void>}
+   */
+  async delete(_id: RoleId): Promise<void> {
+    const result = await this._roleRepository
+      .createQueryBuilder()
+      .softDelete()
+      .where('_id = :id', { id: _id._value })
+      .execute();
+
+    console.log(result);
   }
 }

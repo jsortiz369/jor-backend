@@ -14,7 +14,7 @@ export type RoleDataSave = Omit<RoleInterface, '_id' | 'createdAt' | 'updatedAt'
 export type RoleValueObject = {
   _id: valueObjects.RoleId;
   name: valueObjects.RoleName;
-  description: valueObjects.RoleDescription;
+  description?: valueObjects.RoleDescription;
   status: valueObjects.RoleStatus;
   createdAt?: valueObjects.RoleCreatedAt;
   updatedAt?: valueObjects.RoleUpdatedAt;
