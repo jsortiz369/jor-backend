@@ -20,7 +20,7 @@ export class Role {
     this.deletedAt = data.deletedAt;
   }
 
-  static create(data: Omit<RoleValueObject, 'createdAt' | 'updatedAt' | 'deletedAt'>) {
+  static create(data: Omit<RoleValueObject, 'createdAt' | 'updatedAt' | 'deletedAt'>): Role {
     return new Role({ ...data });
   }
 
